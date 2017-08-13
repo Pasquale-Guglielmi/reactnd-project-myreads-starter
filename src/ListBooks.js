@@ -29,8 +29,9 @@ class ListBooks extends Component {
 
     updateState = (value, id) => {
         BooksAPI.update({id: id}, value).then((res) => {
-            BooksAPI.getAll().then((books) => {this.setState({ books })
-            })
+            let book = this.state.books.filter(b => b.id === id)
+            book[0].shelf = value
+            this.forceUpdate()
         })
     }
 
